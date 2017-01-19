@@ -56,14 +56,15 @@ public class MainActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
 
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        /**
+         * TODO: Remember to use this code with RecyclerViewer to call the custom divide decorator
+         */
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity()));
+//        //or
+//        recyclerView.addItemDecoration(
+//                new DividerItemDecoration(getActivity(), R.drawable.divider));
+
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
