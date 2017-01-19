@@ -25,6 +25,7 @@
             android:layout_margin="16dp"
             fresco:actualImageScaleType="focusCrop"
             fresco:roundAsCircle="true"
+            fresco:placeholderImage="@drawable/profile"
             fresco:roundWithOverlayColor="@android:color/white" />
 
         <TextView
