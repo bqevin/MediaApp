@@ -20,6 +20,7 @@
         android:layout_margin="16dp"
         fresco:actualImageScaleType="focusCrop"
         fresco:roundAsCircle="true"
+        android:src="@drawable/avatar"
         fresco:roundWithOverlayColor="@android:color/white" />
 
     <TextView
