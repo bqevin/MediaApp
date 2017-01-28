@@ -6,7 +6,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -82,7 +81,8 @@ public class MainActivity extends AppCompatActivity
         adapter.addFragment(new TopStoriesFragment(), "Top Stories");
         adapter.addFragment(new VideoFragment(), "Videos");
         adapter.addFragment(new NearMeFragment(), "Near Me");
-        adapter.addFragment(new LiveMusicFragment(), "Live Music");
+        adapter.addFragment(new LiveFragment(), "Live");
+        adapter.addFragment(new MusicFragment(), "Music");
         adapter.addFragment(new SubscriptionsFragment(), "My Subscriptions");
         adapter.addFragment(new ContactsFragment(), "Contacts");
 
