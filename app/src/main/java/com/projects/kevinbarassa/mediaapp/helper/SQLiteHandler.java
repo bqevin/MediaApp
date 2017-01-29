@@ -22,7 +22,7 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     // Database Name
-    private static final String DATABASE_NAME = "media_api";
+    private static final String DATABASE_NAME = "media_app";
 
     // Login table name
     private static final String TABLE_USER = "user";
@@ -32,6 +32,10 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     private static final String KEY_NAME = "name";
     private static final String KEY_EMAIL = "email";
     private static final String KEY_UID = "uid";
+    private static final String KEY_SIMU = "phone";
+    private static final String KEY_LOCATION = "location";
+    private static final String KEY_BIO = "bio";
+    private static final String KEY_UPDATED_AT = "updated_at";
     private static final String KEY_CREATED_AT = "created_at";
 
     public SQLiteHandler(Context context) {
@@ -44,6 +48,8 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         String CREATE_LOGIN_TABLE = "CREATE TABLE " + TABLE_USER + "("
                 + KEY_ID + " INTEGER PRIMARY KEY," + KEY_NAME + " TEXT,"
                 + KEY_EMAIL + " TEXT UNIQUE," + KEY_UID + " TEXT,"
+                + KEY_BIO + " TEXT," + KEY_SIMU + " TEXT,"
+                + KEY_LOCATION + " TEXT," + KEY_UPDATED_AT + " TEXT,"
                 + KEY_CREATED_AT + " TEXT" + ")";
         db.execSQL(CREATE_LOGIN_TABLE);
 
@@ -63,13 +69,17 @@ public class SQLiteHandler extends SQLiteOpenHelper {
     /**
      * Storing user details in database
      * */
-    public void addUser(String name, String email, String uid, String created_at) {
+    public void addUser(String name, String email, String uid, String bio, String phone, String location, String updated_at, String created_at) {
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, name); // Name
         values.put(KEY_EMAIL, email); // Email
-        values.put(KEY_UID, uid); // Email
+        values.put(KEY_UID, uid); // uid
+        values.put(KEY_BIO, bio); // Bio
+        values.put(KEY_SIMU, phone); // Phone
+        values.put(KEY_LOCATION, location); // Location
+        values.put(KEY_UPDATED_AT, updated_at); // Updated At
         values.put(KEY_CREATED_AT, created_at); // Created At
 
         // Inserting Row
@@ -94,7 +104,11 @@ public class SQLiteHandler extends SQLiteOpenHelper {
             user.put("name", cursor.getString(1));
             user.put("email", cursor.getString(2));
             user.put("uid", cursor.getString(3));
-            user.put("created_at", cursor.getString(4));
+            user.put("bio", cursor.getString(4));
+            user.put("phone", cursor.getString(5));
+            user.put("location", cursor.getString(6));
+            user.put("updated_at", cursor.getString(7));
+            user.put("created_at", cursor.getString(8));
         }
         cursor.close();
         db.close();
@@ -114,6 +128,18 @@ public class SQLiteHandler extends SQLiteOpenHelper {
         db.close();
 
         Log.d(TAG, "Deleted all user info from sqlite");
+    }
+
+    /**
+     * Actually deletes all tables...not just users
+     */
+    public void dropDB(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        // Drop table if existed
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        // Create tables again
+        onCreate(db);
+        Log.d(TAG, "Dropped existing table, and re-created a blank one");
     }
 
 }

@@ -1,5 +1,6 @@
 package com.projects.kevinbarassa.mediaapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
@@ -17,6 +18,8 @@ import android.view.MenuItem;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
+import com.projects.kevinbarassa.mediaapp.helper.SQLiteHandler;
+import com.projects.kevinbarassa.mediaapp.helper.SessionManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +31,8 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     NavigationView navigationView = null;
     Toolbar toolbar = null;
+    private SQLiteHandler db;
+    private SessionManager session;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,20 @@ public class MainActivity extends AppCompatActivity
                 .setDownsampleEnabled(true)
                 .build();
         Fresco.initialize(this, config);
+
+
+        // SqLite database handler
+        db = new SQLiteHandler(getApplicationContext());
+        // session manager
+        session = new SessionManager(getApplicationContext());
+
+        if (!session.isLoggedIn()) {
+            logoutUser();
+        }
+
+        if (savedInstanceState != null) {
+            return;
+        }
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -175,5 +194,16 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void logoutUser() {
+        session.setLogin(false);
+
+        db.dropDB();
+
+        // Launching the login activity
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
