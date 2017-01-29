@@ -101,10 +101,8 @@ public class MainActivity extends AppCompatActivity
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new TopStoriesFragment(), "Top Stories");
-        adapter.addFragment(new VideoFragment(), "Videos");
         adapter.addFragment(new NearMeFragment(), "Near Me");
         adapter.addFragment(new LiveFragment(), "Live");
-        adapter.addFragment(new MusicFragment(), "Music");
         adapter.addFragment(new SubscriptionsFragment(), "My Subscriptions");
         adapter.addFragment(new ContactsFragment(), "Contacts");
 
@@ -183,10 +181,13 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_topstories) {
             // Handle the top stories click
         } else if (id == R.id.nav_videos) {
-
+            Intent intent = new Intent(MainActivity.this, VideosActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_nearme) {
 
         } else if (id == R.id.nav_music) {
+            Intent intent = new Intent(MainActivity.this, MusicActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_subscriptions) {
 
