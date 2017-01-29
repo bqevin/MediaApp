@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="@android:color/white"
+    android:background="@drawable/bg"
     android:gravity="center"
     android:orientation="vertical"
     android:padding="10dp">
@@ -55,7 +55,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@android:color/darker_gray"
+            android:background="@color/colorPrimaryDark"
             android:text="Get in"
             android:textColor="@android:color/white" />
 
@@ -69,7 +69,7 @@
             android:background="@null"
             android:text="Not registered? Create account"
             android:textAllCaps="false"
-            android:textColor="@color/colorAccent"
+            android:textColor="@android:color/black"
             android:textSize="15dp" />
     </LinearLayout>
 </LinearLayout>

@@ -15,6 +15,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -33,6 +36,7 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar = null;
     private SQLiteHandler db;
     private SessionManager session;
+    private Button signout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +74,6 @@ public class MainActivity extends AppCompatActivity
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
-
 
         /**
          * TODO: Remember to use this code with RecyclerViewer to call the custom divide decorator
@@ -165,7 +168,9 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.action_settings) {
             return true;
         }
-
+        if (id == R.id.logout) {
+            logoutUser();
+        }
         return super.onOptionsItemSelected(item);
     }
 
