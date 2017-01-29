@@ -1,13 +1,34 @@
 package com.projects.kevinbarassa.mediaapp;
 
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MusicActivity extends AppCompatActivity {
+    private List<Music> mListItems;
+    private MusicAdapter mAdapter;
+    private TextView mSelectedTrackTitle;
+    private ImageView mSelectedTrackImage;
+    private MediaPlayer mMediaPlayer;
+    private ImageView mPlayerControl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,15 +37,111 @@ public class MusicActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        mMediaPlayer = new MediaPlayer();
+        mMediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        mMediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onPrepared(MediaPlayer mp) {
+                togglePlayPause();
             }
         });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mMediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                mPlayerControl.setImageResource(R.drawable.ic_play);
+            }
+        });
+
+        mListItems = new ArrayList<Music>();
+        ListView listView = (ListView)findViewById(R.id.track_list_view);
+        mAdapter = new MusicAdapter(this, mListItems);
+        listView.setAdapter(mAdapter);
+
+        mSelectedTrackTitle = (TextView)findViewById(R.id.selected_track_title);
+        mSelectedTrackImage = (ImageView)findViewById(R.id.selected_track_image);
+        mPlayerControl = (ImageView)findViewById(R.id.player_control);
+        mPlayerControl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                togglePlayPause();
+            }
+        });
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Music track = mListItems.get(position);
+
+                mSelectedTrackTitle.setText(track.getTitle());
+                Picasso.with(MusicActivity.this).load(track.getArtworkURL()).into(mSelectedTrackImage);
+
+                if (mMediaPlayer.isPlaying()) {
+                    mMediaPlayer.stop();
+                    mMediaPlayer.reset();
+                }
+
+                try {
+                    mMediaPlayer.setDataSource(track.getStreamURL() + "?client_id=" + AppConfig.CLIENT_ID);
+                    mMediaPlayer.prepareAsync();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        MusicAPInterface scService = MusicApiClient.getService();
+        scService.getRecentTracks("last_week").enqueue(new Callback<List<Music>>() {
+            @Override
+            public void onResponse(Call<List<Music>> call, Response<List<Music>> response) {
+                if (response.isSuccessful()) {
+                    List<Music> tracks = response.body();
+                    loadTracks(tracks);
+                } else {
+                    showMessage("Error code " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<Music>> call, Throwable t) {
+                showMessage("Network Error: " +  t.getMessage());
+            }
+        });
+
+
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (mMediaPlayer != null) {
+            if (mMediaPlayer.isPlaying()) {
+                mMediaPlayer.stop();
+            }
+            mMediaPlayer.release();
+            mMediaPlayer = null;
+        }
+    }
+
+    private void togglePlayPause() {
+        if (mMediaPlayer.isPlaying()) {
+            mMediaPlayer.pause();
+            mPlayerControl.setImageResource(R.drawable.ic_play);
+        } else {
+            mMediaPlayer.start();
+            mPlayerControl.setImageResource(R.drawable.ic_pause);
+        }
+    }
+
+    private void loadTracks(List<Music> tracks) {
+        mListItems.clear();
+        mListItems.addAll(tracks);
+        mAdapter.notifyDataSetChanged();
+    }
+
+    private void showMessage(String message) {
+        Toast.makeText(MusicActivity.this, message, Toast.LENGTH_LONG).show();
     }
 
 }

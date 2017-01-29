@@ -13,4 +13,8 @@ public class AppConfig {
 
     // Server user edit url
     public static String URL_EDIT = "http://agrigender.net/arosto/users/edit.php";
+
+    //MusicApiClient Config
+    public static final String CLIENT_ID = "43000cf85e90f30f8607278ddd31ba86";
+    public static final String API_URL = "https://api.soundcloud.com";
 }

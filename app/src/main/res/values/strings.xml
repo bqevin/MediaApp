@@ -30,6 +30,6 @@
     <string name="content_from2_mock">New York, NY 10025</string>
     <string name="content_to1_mock">46th Ave</string>
     <string name="content_to2_mock">Woodside, NY 11101</string>
-    <string name="title_activity_music">MusicActivity</string>
-    <string name="title_activity_videos">VideosActivity</string>
+    <string name="title_activity_music">My Music</string>
+    <string name="title_activity_videos">My Videos</string>
 </resources>
