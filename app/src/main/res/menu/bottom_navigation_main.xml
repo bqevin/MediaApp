@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_trending"
+        android:enabled="true"
+        android:icon="@drawable/trending"
+        android:title="Top Stories"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_nearme"
+        android:enabled="true"
+        android:icon="@drawable/nearme"
+        android:title="Near Me"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_subscription"
+        android:enabled="true"
+        android:icon="@drawable/subscription"
+        android:title="Subscription"
+        app:showAsAction="ifRoom" />
+</menu>

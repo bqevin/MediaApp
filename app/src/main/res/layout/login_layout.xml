@@ -10,7 +10,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:id="@+id/imageView3"
         android:src="@drawable/hot96"
         android:layout_gravity="center_horizontal" />
@@ -51,13 +51,30 @@
         <!-- Login Button -->
 
         <Button
+            android:textSize="14dp"
+            android:letterSpacing="0.1"
+            android:textColor="#ececf1"
+            android:gravity="center"
+            android:padding="17dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginLeft="40dp"
+            android:background="@drawable/rounded"
             android:id="@+id/btnLogin"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dip"
-            android:background="@color/colorPrimaryDark"
             android:text="Get in"
-            android:textColor="@android:color/white" />
+            />
+        <!-- Login Button -->
+
+        <!--FB Login-->
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:src="@drawable/facobookbutton"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            android:layout_gravity="center"/>
 
         <!-- Link to Login Screen -->
 
@@ -65,7 +82,7 @@
             android:id="@+id/btnLinkToRegisterScreen"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dip"
+            android:layout_marginTop="12dip"
             android:background="@null"
             android:text="Not registered? Create account"
             android:textAllCaps="false"
