@@ -30,7 +30,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private TabLayout tabLayout;
+    //private TabLayout tabLayout;
     private ViewPager viewPager;
     NavigationView navigationView = null;
     Toolbar toolbar = null;
@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity
 
         setupViewPager(viewPager);
 
-        tabLayout = (TabLayout) findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+//        tabLayout = (TabLayout) findViewById(R.id.tabs);
+//        tabLayout.setupWithViewPager(viewPager);
 
         /**
          * TODO: Remember to use this code with RecyclerViewer to call the custom divide decorator

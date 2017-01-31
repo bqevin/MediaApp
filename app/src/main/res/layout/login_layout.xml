@@ -65,16 +65,7 @@
             android:layout_marginTop="20dip"
             android:text="Get in"
             />
-        <!-- Login Button -->
 
-        <!--FB Login-->
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="100dp"
-            android:src="@drawable/facobookbutton"
-            android:layout_marginRight="20dp"
-            android:layout_marginLeft="20dp"
-            android:layout_gravity="center"/>
 
         <!-- Link to Login Screen -->
 
