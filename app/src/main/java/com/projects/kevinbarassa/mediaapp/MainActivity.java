@@ -2,6 +2,8 @@ package com.projects.kevinbarassa.mediaapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -31,7 +33,8 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     //private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private BottomNavigationView bottomNavigationView;
+    //private ViewPager viewPager;
     NavigationView navigationView = null;
     Toolbar toolbar = null;
     private SQLiteHandler db;
@@ -68,12 +71,34 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         //Find viewpager
-        viewPager = (ViewPager) findViewById(R.id.viewpager);
+        //viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        setupViewPager(viewPager);
+        //setupViewPager(viewPager);
 
 //        tabLayout = (TabLayout) findViewById(R.id.tabs);
 //        tabLayout.setupWithViewPager(viewPager);
+
+
+        bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.action_trending:
+
+                                break;
+                            case R.id.action_nearme:
+
+                                break;
+                            case R.id.action_subscription:
+
+                                break;
+                        }
+                        return false;
+                    }
+                });
 
         /**
          * TODO: Remember to use this code with RecyclerViewer to call the custom divide decorator
@@ -98,44 +123,44 @@ public class MainActivity extends AppCompatActivity
     }
 
     //Setup viewpager adapter
-    private void setupViewPager(ViewPager viewPager) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFragment(new TopStoriesFragment(), "Top Stories");
-        adapter.addFragment(new NearMeFragment(), "Near Me");
-        adapter.addFragment(new LiveFragment(), "Live");
-        adapter.addFragment(new SubscriptionsFragment(), "My Subscriptions");
-        adapter.addFragment(new ContactsFragment(), "Contacts");
-
-        viewPager.setAdapter(adapter);
-    }
-    class ViewPagerAdapter extends FragmentPagerAdapter {
-        private final List<Fragment> mFragmentList = new ArrayList<>();
-        private final List<String> mFragmentTitleList = new ArrayList<>();
-
-        public ViewPagerAdapter(FragmentManager manager) {
-            super(manager);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            return mFragmentList.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mFragmentList.size();
-        }
-
-        public void addFragment(Fragment fragment, String title) {
-            mFragmentList.add(fragment);
-            mFragmentTitleList.add(title);
-        }
-
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return mFragmentTitleList.get(position);
-        }
-    }
+//    private void setupViewPager(ViewPager viewPager) {
+//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+//        adapter.addFragment(new TopStoriesFragment(), "Top Stories");
+//        adapter.addFragment(new NearMeFragment(), "Near Me");
+//       // adapter.addFragment(new LiveFragment(), "Live");
+//        adapter.addFragment(new SubscriptionsFragment(), "My Subscriptions");
+//        //adapter.addFragment(new ContactsFragment(), "Contacts");
+//
+//        viewPager.setAdapter(adapter);
+//    }
+//    class ViewPagerAdapter extends FragmentPagerAdapter {
+//        private final List<Fragment> mFragmentList = new ArrayList<>();
+//        private final List<String> mFragmentTitleList = new ArrayList<>();
+//
+//        public ViewPagerAdapter(FragmentManager manager) {
+//            super(manager);
+//        }
+//
+//        @Override
+//        public Fragment getItem(int position) {
+//            return mFragmentList.get(position);
+//        }
+//
+//        @Override
+//        public int getCount() {
+//            return mFragmentList.size();
+//        }
+//
+//        public void addFragment(Fragment fragment, String title) {
+//            mFragmentList.add(fragment);
+//            mFragmentTitleList.add(title);
+//        }
+//
+//        @Override
+//        public CharSequence getPageTitle(int position) {
+//            return mFragmentTitleList.get(position);
+//        }
+//    }
 
 
     @Override
