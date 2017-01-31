@@ -29,10 +29,10 @@
     </android.support.design.widget.AppBarLayout>
 
     <FrameLayout
-        android:id="@+id/contentContainer"
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/bottom_navigation" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
     <!--<android.support.v4.view.ViewPager-->
         <!--android:id="@+id/viewpager"-->
@@ -41,6 +41,7 @@
         <!--app:layout_behavior="@string/appbar_scrolling_view_behavior"  />-->
 
     <android.support.design.widget.BottomNavigationView
+        app:layout_anchorGravity="bottom"
         android:id="@+id/bottom_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -49,5 +50,6 @@
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
         app:menu="@menu/bottom_navigation_main" />
+
 
 </android.support.design.widget.CoordinatorLayout>
