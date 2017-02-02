@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 
 
         //Ensure no blank screen on launch
-//        openFragment(topStory);
+        openFragment(topStory);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
