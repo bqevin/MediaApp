@@ -27,14 +27,12 @@ import com.projects.kevinbarassa.mediaapp.helper.SessionManager;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    //private TabLayout tabLayout;
+
     private BottomNavigationView bottomNavigationView;
-    //private ViewPager viewPager;
     NavigationView navigationView = null;
-    Toolbar toolbar = null;
+    Toolbar toolbar;
     private SQLiteHandler db;
     private SessionManager session;
-    private Button signout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,21 +60,29 @@ public class MainActivity extends AppCompatActivity
             return;
         }
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
-        //Find viewpager
-        //viewPager = (ViewPager) findViewById(R.id.viewpager);
 
-        //setupViewPager(viewPager);
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
 
-//        tabLayout = (TabLayout) findViewById(R.id.tabs);
-//        tabLayout.setupWithViewPager(viewPager);
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
 
         final TopStoriesFragment topStory = new TopStoriesFragment();
         final NearMeFragment nearMe = new NearMeFragment();
         final SubscriptionsFragment subscription = new SubscriptionsFragment();
 
+
+        //Ensure no blank screen on launch
+        openFragment(topStory);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -108,17 +114,6 @@ public class MainActivity extends AppCompatActivity
 //                new DividerItemDecoration(getActivity(), R.drawable.divider));
 
 
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.setDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
-
-
     }
 
 
@@ -132,46 +127,6 @@ public class MainActivity extends AppCompatActivity
         transaction.commit();
 
     }
-
-    //Setup viewpager adapter
-//    private void setupViewPager(ViewPager viewPager) {
-//        ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-//        adapter.addFragment(new TopStoriesFragment(), "Top Stories");
-//        adapter.addFragment(new NearMeFragment(), "Near Me");
-//       // adapter.addFragment(new LiveFragment(), "Live");
-//        adapter.addFragment(new SubscriptionsFragment(), "My Subscriptions");
-//        //adapter.addFragment(new ContactsFragment(), "Contacts");
-//
-//        viewPager.setAdapter(adapter);
-//    }
-//    class ViewPagerAdapter extends FragmentPagerAdapter {
-//        private final List<Fragment> mFragmentList = new ArrayList<>();
-//        private final List<String> mFragmentTitleList = new ArrayList<>();
-//
-//        public ViewPagerAdapter(FragmentManager manager) {
-//            super(manager);
-//        }
-//
-//        @Override
-//        public Fragment getItem(int position) {
-//            return mFragmentList.get(position);
-//        }
-//
-//        @Override
-//        public int getCount() {
-//            return mFragmentList.size();
-//        }
-//
-//        public void addFragment(Fragment fragment, String title) {
-//            mFragmentList.add(fragment);
-//            mFragmentTitleList.add(title);
-//        }
-//
-//        @Override
-//        public CharSequence getPageTitle(int position) {
-//            return mFragmentTitleList.get(position);
-//        }
-//    }
 
 
     @Override
