@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity
     //Init frags
     final TopStoriesFragment topStory = new TopStoriesFragment();
     final NearMeFragment nearMe = new NearMeFragment();
+    final LiveFragment live = new LiveFragment();
     final SubscriptionsFragment subscription = new SubscriptionsFragment();
 
     @Override
@@ -82,7 +83,7 @@ public class MainActivity extends AppCompatActivity
 
 
         //Ensure no blank screen on launch
-        openFragment(topStory);
+//        openFragment(topStory);
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -96,6 +97,9 @@ public class MainActivity extends AppCompatActivity
                                 break;
                             case R.id.action_nearme:
                                 openFragment(nearMe);
+                                break;
+                            case R.id.action_live:
+                                openFragment(live);
                                 break;
                             case R.id.action_subscription:
                                 openFragment(subscription);
