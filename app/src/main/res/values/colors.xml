@@ -29,6 +29,10 @@
     <color name="listsub2">#9e9e9e</color>
     <color name="listtext">#585858</color>
 
+    <!--Music Album colors-->
+    <color name="viewBg">#f1f5f8</color>
+    <color name="album_title">#4c4c4c</color>
+
 
     <!--Bottom Nav Menu-->
     <color name="color_trending">#009688</color>
