@@ -16,7 +16,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
+
 
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.imagepipeline.core.ImagePipelineConfig;
@@ -33,6 +33,11 @@ public class MainActivity extends AppCompatActivity
     Toolbar toolbar;
     private SQLiteHandler db;
     private SessionManager session;
+
+    //Init frags
+    final TopStoriesFragment topStory = new TopStoriesFragment();
+    final NearMeFragment nearMe = new NearMeFragment();
+    final SubscriptionsFragment subscription = new SubscriptionsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,11 +79,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-        final TopStoriesFragment topStory = new TopStoriesFragment();
-        final NearMeFragment nearMe = new NearMeFragment();
-        final SubscriptionsFragment subscription = new SubscriptionsFragment();
 
 
         //Ensure no blank screen on launch
@@ -171,17 +171,18 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_topstories) {
             // Handle the top stories click
+            openFragment(topStory);
         } else if (id == R.id.nav_videos) {
             Intent intent = new Intent(MainActivity.this, VideosActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_nearme) {
-
+            openFragment(nearMe);
         } else if (id == R.id.nav_music) {
             Intent intent = new Intent(MainActivity.this, MusicActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_subscriptions) {
-
+            openFragment(subscription);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_contacts) {
