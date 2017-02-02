@@ -51,6 +51,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.projects.kevinbarassa.mediaapp.MainActivity" />
         </activity>
+        <activity android:name=".MusicAlbumActivity"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

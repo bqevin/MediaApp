@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_nearme) {
             openFragment(nearMe);
         } else if (id == R.id.nav_music) {
-            Intent intent = new Intent(MainActivity.this, MusicActivity.class);
+            Intent intent = new Intent(MainActivity.this, MusicAlbumActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_subscriptions) {
