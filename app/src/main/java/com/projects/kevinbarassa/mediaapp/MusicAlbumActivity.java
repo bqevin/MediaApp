@@ -31,6 +31,8 @@ public class MusicAlbumActivity extends AppCompatActivity {
         setContentView(R.layout.activity_music_album);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeButtonEnabled(true);
 
         initCollapsingToolbar();
 
