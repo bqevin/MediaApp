@@ -28,10 +28,13 @@ dependencies {
     compile 'com.android.support:design:25.1.0'
     compile 'com.android.support:recyclerview-v7:25.1.0'
     compile 'com.android.volley:volley:1.0.0'
+    //Butterknife
     compile 'com.jakewharton:butterknife:6.1.0'
+    //Picasso Lib
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.android.support:cardview-v7:25.1.0'
     compile 'com.android.support:support-v4:25.1.0'
+    //Facebook Fresco
     compile 'com.facebook.fresco:fresco:0.6.1'
     compile 'com.google.code.gson:gson:2.8.0'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
@@ -40,6 +43,8 @@ dependencies {
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //Section Recycler Adapter
     compile 'io.github.luizgrp.sectionedrecyclerviewadapter:sectionedrecyclerviewadapter:1.0.4'
+    //Fancy FAB
+    compile 'com.getbase:floatingactionbutton:1.10.1'
 
     testCompile 'junit:junit:4.12'
 }

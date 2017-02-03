@@ -81,12 +81,12 @@ public class TopStoriesFragment extends Fragment {
                 case WORLD:
                     this.title = getString(R.string.world_topic);
                     this.list = getNews(R.array.news_world);
-                    this.imgPlaceholderResId = R.drawable.ic_public_black_48dp;
+                    this.imgPlaceholderResId = R.drawable.img1;
                     break;
                 case BUSINESS:
                     this.title = getString(R.string.biz_topic);
                     this.list = getNews(R.array.news_biz);
-                    this.imgPlaceholderResId = R.drawable.ic_business_black_48dp;
+                    this.imgPlaceholderResId = R.drawable.newsname1;
                     break;
                 case TECHNOLOGY:
                     this.title = getString(R.string.tech_topic);
@@ -96,7 +96,7 @@ public class TopStoriesFragment extends Fragment {
                 case SPORTS:
                     this.title = getString(R.string.sports_topic);
                     this.list = getNews(R.array.news_sports);
-                    this.imgPlaceholderResId = R.drawable.ic_directions_run_black_48dp;
+                    this.imgPlaceholderResId = R.drawable.hot96;
                     break;
             }
 

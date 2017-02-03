@@ -130,7 +130,7 @@ public class VideosFragment extends Fragment {
 
             itemHolder.tvItem.setText(name);
             itemHolder.tvSubItem.setText(category);
-            itemHolder.imgItem.setImageResource(R.drawable.ic_movie_black_48dp);
+            itemHolder.imgItem.setImageResource(R.drawable.ic_play);
 
             itemHolder.rootView.setOnClickListener(new View.OnClickListener() {
                 @Override
