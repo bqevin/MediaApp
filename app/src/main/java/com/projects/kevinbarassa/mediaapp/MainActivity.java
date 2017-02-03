@@ -34,12 +34,6 @@ public class MainActivity extends AppCompatActivity
     private SQLiteHandler db;
     private SessionManager session;
 
-    //Init frags
-    final TopStoriesFragment topStory = new TopStoriesFragment();
-    final NearMeFragment nearMe = new NearMeFragment();
-    final LiveFragment live = new LiveFragment();
-    final SubscriptionsFragment subscription = new SubscriptionsFragment();
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,9 +75,13 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        if (savedInstanceState == null) {
+            //Ensure no blank screen on launch
+            TopStoriesFragment homeFragment = new TopStoriesFragment();
 
-        //Ensure no blank screen on launch
-        openFragment(topStory);
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.fragment_container, homeFragment).commit();
+        }
 
         bottomNavigationView = (BottomNavigationView) findViewById(R.id.bottom_navigation);
 
@@ -93,16 +91,16 @@ public class MainActivity extends AppCompatActivity
                     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                         switch (item.getItemId()) {
                             case R.id.action_trending:
-                                openFragment(topStory);
+                                replaceFragment(new TopStoriesFragment());
                                 break;
                             case R.id.action_nearme:
-                                openFragment(nearMe);
+                                replaceFragment(new NearMeFragment());
                                 break;
                             case R.id.action_live:
-                                openFragment(live);
+                                replaceFragment(new LiveFragment());
                                 break;
                             case R.id.action_subscription:
-                                openFragment(subscription);
+                                replaceFragment(new SubscriptionsFragment());
                                 break;
                         }
                         return false;
@@ -130,6 +128,15 @@ public class MainActivity extends AppCompatActivity
         transaction.addToBackStack(null);
         transaction.commit();
 
+    }
+
+    //Replace any Frag
+    public void replaceFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+
+        transaction.replace(R.id.fragment_container, fragment);
+
+        transaction.commit();
     }
 
 
@@ -180,18 +187,18 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_topstories) {
             // Handle the top stories click
-            openFragment(topStory);
+            replaceFragment(new TopStoriesFragment());
         } else if (id == R.id.nav_videos) {
             Intent intent = new Intent(MainActivity.this, VideosActivity.class);
             startActivity(intent);
         } else if (id == R.id.nav_nearme) {
-            openFragment(nearMe);
+            replaceFragment(new NearMeFragment());
         } else if (id == R.id.nav_music) {
             Intent intent = new Intent(MainActivity.this, MusicAlbumActivity.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_subscriptions) {
-            openFragment(subscription);
+            replaceFragment(new SubscriptionsFragment());
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_contacts) {

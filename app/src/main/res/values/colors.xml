@@ -34,6 +34,18 @@
     <color name="album_title">#4c4c4c</color>
 
 
+    <!--Top Stories-->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="dark_grey">#484547</color>
+
+    <color name="app_background_color">#FAFAFA</color>
+    <color name="divider_color">#C7C7CC</color>
+
+    <color name="item_selected_background_color">#C7C7CC</color>
+    <color name="image_placeholder_background_color">#C7C7CC</color>
+
+
     <!--Bottom Nav Menu-->
     <color name="color_trending">#009688</color>
     <color name="color_nearme">#2196F3</color>
