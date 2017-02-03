@@ -4,6 +4,7 @@ package com.projects.kevinbarassa.mediaapp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,6 +48,18 @@ public class SubscriptionsFragment extends Fragment {
         View rootView =  inflater.inflate(R.layout.fragment_subscriptions, container, false);
         listview = (ExpandableHeightListView)rootView.findViewById(R.id.listview);
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        if (getActivity() instanceof AppCompatActivity) {
+            AppCompatActivity activity = ((AppCompatActivity) getActivity());
+            if (activity.getSupportActionBar() != null){
+                activity.getSupportActionBar().setTitle("My Subscriptions");
+            }
+        }
     }
 
     @Override

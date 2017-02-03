@@ -53,8 +53,9 @@ public class TopStoriesFragment extends Fragment {
 
         if (getActivity() instanceof AppCompatActivity) {
             AppCompatActivity activity = ((AppCompatActivity) getActivity());
-            if (activity.getSupportActionBar() != null)
+            if (activity.getSupportActionBar() != null){
                 activity.getSupportActionBar().setTitle(R.string.nav_top_stories);
+            }
         }
     }
 
